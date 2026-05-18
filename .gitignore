@@ -1,13 +1,32 @@
+# Data & model weights
 *.csv
 *.cbm
 *.joblib
 *.pkl
 *.h5
+*.npy
+*.zip
+
+# Logs
 *.log
+
+# Directories
 artifacts/
 outputs/*
 data/*
+dataset/
 !data/.gitkeep
 !outputs/.gitkeep
+
+# Python
 __pycache__/
+*.pyc
 .ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
