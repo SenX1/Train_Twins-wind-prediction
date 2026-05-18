@@ -1,0 +1,13 @@
+*.csv
+*.cbm
+*.joblib
+*.pkl
+*.h5
+*.log
+artifacts/
+outputs/*
+data/*
+!data/.gitkeep
+!outputs/.gitkeep
+__pycache__/
+.ipynb_checkpoints/
