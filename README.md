@@ -8,16 +8,12 @@ The approach combines physics-informed feature engineering, time-series modeling
 
 ## Competition Results
 
-Developed for the **Wind Power Generation Forecasting Hackathon**, using data from the Azov Wind Farm (90.09 MW installed capacity).
-
 | Evaluation period | Result |
 |---|---|
-| Q1 2026 | **7.987% MAE** (normalized by installed capacity), competition leaderboard |
-| Additional forecasting period | **2nd place** on the private leaderboard, MAE ≈ 2.7 (units to be confirmed) |
+| Q1 2026 | **7.987% normalized MAE** on the competition leaderboard |
+| May 2026 | **2nd place on the private leaderboard**, approximately **2.7 MW MAE** |
 
-The solution combines physics-informed feature engineering with an ensemble of 11 CatBoost models, Ridge stacking, and isotonic calibration.
-
-*Results are reported from separate competition evaluation periods and should not be treated as directly comparable.*
+The two results correspond to different forecasting periods and are not directly comparable.
 
 ## Approach
 
@@ -51,11 +47,9 @@ The solution uses **11 CatBoost models**, organized into three groups:
 
 The predictions are combined using **Ridge regression stacking**, followed by **isotonic calibration**.
 
-### 4. Validation
+### Validation
 
-Used `TimeSeriesSplit` with a gap between training and validation periods to reduce temporal leakage.
-
-**Q1 2026 validation MAE: 7.987% of installed capacity.**
+For the Q1 pipeline, the Ridge stacker and isotonic calibration are fitted on out-of-fold predictions generated with `TimeSeriesSplit` and a purge gap between training and validation periods.
 
 ## Quick Start
 
@@ -82,6 +76,12 @@ The datasets are not included in the repository.
 
 ```bash
 python pipelines/generate_submission_q1.py
+```
+
+By default, CatBoost uses GPU. To run on CPU:
+
+```bash
+CATBOOST_CPU=1 python pipelines/generate_submission_q1.py
 ```
 
 Output: `outputs/submission_q1.csv`
